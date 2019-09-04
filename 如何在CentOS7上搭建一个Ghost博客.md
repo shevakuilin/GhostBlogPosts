@@ -1,4 +1,4 @@
-### 前言
+## 前言
 
 此前我的个人博客采用 [Hexo](https://hexo.io/zh-cn/index.html) + [Github Pages](https://pages.github.com/) 的方案，原因很简单：免费，静态博客部署方便、以及我喜欢的极简风格。Hexo 是用 [Node.js](https://nodejs.org/en) 编写的，页面生成及渲染速度都相当快，支持 Markdown、一键部署以及丰富的插件系统，使用体验一直都很不错，在相当长的一段时间里，它都是我认为最好的博客框架。
 
@@ -14,7 +14,7 @@
 
 在 [WordPress](https://wordpress.org/) 和 [Ghost](https://ghost.org/) 之间略微挣扎了一会，决定用 Ghost 开始我新的博客搭建之旅。
 
-### 一、Ghost 简介
+## Ghost 简介
 
 <img src="/content/images/2019/09/11b8145be285a17777ee4d809bfd4d09_XL.jpg" width="900" height ="450" />
 
@@ -24,19 +24,20 @@ Ghost 目标是取代臃肿的 Wordpress，界面简洁，专注写作，支持�
 
 ##### 优势
 
-- 技术上，采用 Node.js，并发能力远超使用 [PHP](http://php.net/) 的 Wordpress，独立测试表明，Ghost 比 WordPress 快了 **1,900％**。什么意思呢？就是说，在 WordPress 响应1个请求所花费的时间内，Ghost 已经响应了其中的19个请求。博客的速度会影响一切，从搜索引擎排名到移动用户互动。
+技术上，采用 Node.js，并发能力远超使用 [PHP](http://php.net/) 的 Wordpress，独立测试表明，Ghost 比 WordPress 快了 **1,900％**。什么意思呢？就是说，在 WordPress 响应1个请求所花费的时间内，Ghost 已经响应了其中的19个请求。博客的速度会影响一切，从搜索引擎排名到移动用户互动。
+
+   <img src="https://i0.wp.com/wphive.com/wp-content/uploads/2019/01/ghost-speed.png?w=1024&ssl=1" width="800" height ="222" />
 
 
-    <img src="https://i0.wp.com/wphive.com/wp-content/uploads/2019/01/ghost-speed.png?w=1024&ssl=1" width="800" height ="222" />
+易用性上，没有 Wordpress 那么臃肿，可以专注于写作，完美支持 MarkDown，整合了评论系统，官方和开源社区都提供了很多精致的主题皮肤。
 
-
-- 易用性上，没有 Wordpress 那么臃肿，可以专注于写作，完美支持 MarkDown，整合了评论系统，官方和开源社区都提供了很多精致的主题皮肤。
-- 使用上，可随时随地编辑，简洁便利的可视化后台比 Hexo,  Jekyll 这类静态博客要书写方便，无需担心考虑多设备同步的问题。
+使用上，可随时随地编辑，简洁便利的可视化后台比 Hexo,  Jekyll 这类静态博客要书写方便，无需担心考虑多设备同步的问题。
 
 ##### 劣势
 
-- 需要配套支持 Node 环境的虚拟机，一般免费的很少支持，有一定的开销。
-- Ghost 后台提供的功能过于基础，不过基本满足日常写作。
+需要配套支持 Node 环境的虚拟机，一般免费的很少支持，有一定的开销。
+
+Ghost 后台提供的功能过于基础，不过基本满足日常写作。
 
 ##### 亮点
 
@@ -48,19 +49,19 @@ Ghost 目标是取代臃肿的 Wordpress，界面简洁，专注写作，支持�
 - 采用 [Font Awesome](http://fontawesome.io/icons/) 作为社交按钮，也可以自定义图标。
 - 国外优秀免费 [Ghost 主题](http://themeforest.net/category/blogging/ghost-themes) 资源分享。
 
-### 二、搭建方式
+## 搭建方式
 
 Ghost 主要分为 **手动搭建** 和 **自动搭建**（仅支持 Ghost 版本在 1.0 以后）两种方式：
 
 - 手动搭建通常采取 zip 解压安装的方式，手动安装 Ghost，后续的 Ghost 状态管理，升级等都需要自己处理。
 - 自动搭建通过 Ghost 1.0 版本后提供的工具 [Ghost-CLI](https://ghost.org/docs/api/v2/ghost-cli/) 来完成，非常方便管理，推荐使用，本文的教程也是以自动搭建的方式进行。
 
-### 三、准备清单
+## 准备清单
 
 - 一台服务器（本文使用阿里云ECS，服务器系统 CentOS 7.6 64位）
 - 一个可用的域名（前期可使用服务器 ip 地址代替）
 
-### 四、配置环境
+## 配置环境
 
 - Node v10.16.3 （注意 Ghost 版本要求的对应 Node 版本号）
 - Nginx 1.16.1
@@ -68,11 +69,11 @@ Ghost 主要分为 **手动搭建** 和 **自动搭建**（仅支持 Ghost 版�
 - Ghost-CLI 1.11.0
 - Ghost 2.30.2
 
-### 五、搭建步骤
+## 搭建步骤
 
 
 
-##### 1.安装 Node 环境
+### 1. 安装 Node 环境
 
 Node.js 有两种安装方式，一种是直接部署，另一种是编译部署。
 
@@ -89,7 +90,7 @@ $ yum install -y nodejs
 安装完成后，输入 node -v 后回车，如果显示 v10.16.3 则表示 Node.js 安装成功。
 
 
-##### 2.安装 Nginx
+### 2. 安装 Nginx
 
 
 2.1 首先在 `/etc/yum.repos.d/` 目录下创建一个源配置文件 `nginx.repo`：
@@ -133,7 +134,7 @@ $ systemctl status nginx.service
 到此 Nginx 就安装完成了，到浏览器地址栏输入你的云服务器或 VPS 的 IP 后回车，就能看到 "Welcome to Nginx!" 字样了。
 
 
-##### 3.安装 MySQL (MariaDB)
+### 3. 安装 MySQL (MariaDB)
 
 Ghost 默认使用的是 `Sqlite3` 数据库，如果内容多的话，推荐改用 MySQL 数据库。如果不需要则跳过此步。
 
@@ -218,9 +219,9 @@ datadir=/var/lib/mysql
 :wq 保存后，重启数据库：`systemctl restart mariadb.service`
 
 
-##### 4.安装 Ghost
+### 4.安装 Ghost
 
-###### 4.1 检查安装环境
+#### 4.1 检查安装环境
 
 4.1.1 检查 Node.js：
 查看安装的 Node.js 版本号：
@@ -277,7 +278,7 @@ $ systemctl is-active mariadb.service
 active
 ```
 
-###### 4.2 开始安装
+#### 4.2 开始安装
 
 4.2.1 安装 Ghost-CLI
 Ghost-CLI 可以方便对未来的 Ghost 状态管理，升级。装上 Ghost-CLI 以后，之后的版本升级只需要 ghost update 一下就可以了。
@@ -548,7 +549,7 @@ $ vim /var/www/ghost/config.production.json
 ```
 保存后退出。
 
-### 六、测试
+## 六、测试
 
 启动当前网站服务：
 ```vim
@@ -567,7 +568,7 @@ $ sudo systemctl status ghost_shevakuilin-com
 $ sudo systemctl enable ghost_shevakuilin-com
 ```
 
-### 七、其他
+## 七、其他
 
 在启动 Ghost 之后，如果你关闭终端窗口或者从 SSH 断开连接时，Ghost 就停止了。为了防止 Ghost 停止工作，我们需要使用 [PM2](https://github.com/Unitech/pm2) 让 Ghost 保持运行：
 ```vim
@@ -596,12 +597,11 @@ pm2 start/stop/restart/status ghost # 启动/停止/重启/查看状态
 
 以后每次升级，只需要在 Ghost 安装目录下执行 `ghost update [version]` 即可。
 
-### 最后
+## 最后
 
 为了搭建 Ghost 一路踩了很多坑，足足花了两三天的时间，不过在搭建完成进入网站的那一刹那，什么都值了，即便是默认的主题皮肤也帅爆了啊。
 
 参考链接：
-
 [Ghost 博客搭建日记](https://halfrost.com/ghost_build/)
 [Ghost 博客升级指南](https://halfrost.com/ghost_update/)
 [Ghost 博客系统搭建](https://myfirstwon.com/ghost-install/)
