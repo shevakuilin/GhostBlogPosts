@@ -601,6 +601,8 @@ pm2 start/stop/restart/status ghost # 启动/停止/重启/查看状态
 
 为了搭建 Ghost 一路踩了很多坑，足足花了两三天的时间，不过在搭建完成进入网站的那一刹那，什么都值了，即便是默认的主题皮肤也帅爆了啊。
 
+搭建过程到这里就基本结束了，还有很多细节需要打磨，更多内容请参阅这篇 [Ghost 博客完善指南](https://shevakuilin.com/ghost-guide/) 。
+
 参考链接：
 [Ghost 博客搭建日记](https://halfrost.com/ghost_build/)
 [Ghost 博客升级指南](https://halfrost.com/ghost_update/)
