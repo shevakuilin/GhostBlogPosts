@@ -59,8 +59,8 @@
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-	this.page.url = "{{url absolute="true"}}";  
-	this.page.identifier = "ghost-{{comment_id}}"
+this.page.url = "{{url absolute="true"}}";  
+this.page.identifier = "ghost-{{comment_id}}"
 };
 (function() {
 var d = document, s = d.createElement('script');
@@ -80,7 +80,7 @@ $ vim post.hbs
 
 如果你使用的是默认主题 **Casper**，会看到专门为插入注释而保留的一行代码。这就是你要粘贴 Disqus 代码的地方：
 <img src="https://mainframe.ghost.io/content/images/2018/10/image-15.png" width="800" height ="200" />
-    
+
 注意：需要将第 65 行和第 69 行的注释删除。
 
 
@@ -138,7 +138,7 @@ $ sudo yum install certbot python2-certbot-nginx
 这时你可能会看到一个 `Failed` 的失败提示：
 ```vim
 Failed:
-  python-urllib3.noarch 0:1.10.2-5.el7
+python-urllib3.noarch 0:1.10.2-5.el7
 ```
 暂时忽略，在下一步中解决。
 
@@ -204,9 +204,68 @@ Todo...
 # 汉化
 Todo...
 # 代码高亮
-Todo...
+Ghost 默认是不提供代码高亮支持的，但是在后台提供了一个代码插入的配置入口 `Code injection`，可以在其中嵌入第三方插件的高亮代码。
+
+以 `highlight.js` 为例，我们使用[这个网站](https://www.bootcdn.cn/highlight.js/
+)提供的 CDN，进入该网站后，选择你想要高亮的语言，**注意：每个语言的高亮必须独立支持，也就是说，你没有相应语言的高亮代码，该语言就不会有高亮效果**。
+
+## 设置 Code injection
+
+首先进入你的 Ghost 后台，在浏览器中输入 `域名/ghost`，在设置里找到 `Code injection`。
+
+以我的高亮代码为例，在 `Site Header` 中填入：
+```html
+<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/monokai-sublime.min.css" rel="stylesheet">
+```
+
+在 `Site footer` 中填入：
+```html
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/swift.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/objectivec.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/cpp.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/ruby.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/java.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/javascript.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/php.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/json.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/css.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/vim.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/shell.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+```
+
+然后保存设置。
+
+## 使用
+
+以 `Swift` 代码高亮为例，你只需要
+
+``` Swift
+代码 
+``` 
 # 修改字体
-Todo...
+在浏览器中输入 `域名/ghost`进入后台，在设置里找到 `Code injection`。
+
+将你的字体添加到 `Site Header` ：
+```html
+<!--  加载google字体 -->
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono">
+<!--  设置字体 -->
+<style>
+body,p,code,h1, h2, h3, h4, h5, h6,.hljs {
+font-family: 'Droid Sans Mono', monospace;
+}
+.hljs {
+font-size: 0.5em
+}
+</style>
+```
+字体库可以在谷歌的[字体库](http://www.googlefonts.cn/)里找。
+
 # 自定义主题
 Todo...
 
